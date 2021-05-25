@@ -1,0 +1,42 @@
+{% extends 'base.html' %} {% block Content %}
+{% load static %}
+{% comment %} Main Page {% endcomment %}
+<div class='card'>
+{% for x in data %}
+    <a href="{% url 'postRead' x.pk %}"><h1>{{ x.title }}</h1></a>
+    {% if x.created_on %}
+        <p>{{ x.created_on }}</p>
+    {% endif %}
+    {% if x.image %}
+        <img src="{{ x.image.url }}" style="max-height:300px"> 
+    {% else %}
+        
+    {% endif %}
+    <p>{{ x.content|slice:200  }}</p>
+    <a href="{% url 'postRead' x.pk %}">
+    <button type=button>Read More</button></a><br>
+    
+    <a href="{% url 'postRead' x.pk %}">Комментарии: {{ x.approved_comments.count }} </a>
+{% endfor %}
+
+<img>
+{% if img_obj %}
+  <h3>Succesfully uploaded : {{img_obj.title}}</h3>
+  <img src="{{ img_obj.image.url}}" alt="connect" style="max-height:300px">
+{% endif %}
+</img>
+
+<div class='pagination'>
+{% if is_paginated %}
+  
+    {% if page_obj.has_previous %}
+    <li><button><a href="?page={{ page_obj.previous_page_number }}">&laquo; PREV </a></button></li>
+    {% endif %}
+    {% if page_obj.has_next %}
+    <li><button><a href="?page={{ page_obj.next_page_number }}"> NEXT &raquo;</a></button></li>
+
+    {% endif %}
+{% endif %}
+</div>
+</div>
+{% endblock Content %}

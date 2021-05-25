@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+<title>Django Blog</title>
+<link rel='stylesheet' type="text/css" href="{% static  'blog/css/main.css' %}">
+<meta charset="UTF-8">
+
+
+</head>
+<body>
+<div class="header">
+  <h1><i>My first blog &nbsp  </i></h1>
+  <img src="static/blog/image/FreeBlogIcon.png" alt="My image" height=90 width=90>
+</div>
+<div class="navbar">
+  <a href="{% url 'home' %}">Главное</a>
+  <a href="{% url 'news' %}">Новости</a>
+  <a href="{% url 'about' %}">О блоге</a>
+  {% if user.is_authenticated %}
+      <p class="right">User: {{ user.username }}</p>
+      <a href="{% url 'logout' %}?next={{request.path}}" class="right">Выйти</a>
+  {% else %}
+      <a href="{% url 'login' %}?next={{request.path}}" class="right">Войти</a>
+      <a href="{% url 'register' %}" class="right">Регистрация</a>
+  {% endif %}
+</div>
+
+
+<div class="flex-container">
+ <div class="main">
+{% block Content %} {% endblock Content %}
+     
+</div>
+
+
+
+ <div class="side">
+    <h2>Is blog</h2>
+    <p>Integer bibendum magna id leo porta ultricies. Etiam aliquet convallis purus eu malesuada. Vestibulum at erat non leo ornare venenatis sit amet in sapien. Suspendisse vel ex vitae lectus bibendum tristique. Sed malesuada volutpat varius. Duis porta lacinia lacus eget lobortis. Vestibulum in nunc in tellus ultricies fermentum. Ut eget metus hendrerit, vestibulum erat nec, venenatis massa. Sed sit amet libero eu ligula euismod pharetra in sit amet sapien.</p>
+
+    
+        <button><a href="{% url 'postNew' %}"><span>Добавить пост</span></a></br></button>
+ </div>  
+
+</div>
+
+
+<div style="clear: both"> </div>  {% comment %}    Make footer in the bottom {% endcomment %}
+<div class="footer">
+  <p>Author: Lorem Ipsum<br>
+  <a href="mailto:lorem@example.com">lorem@example.com</a></p>
+</div>
+
+	
+</body>
+</html>
+

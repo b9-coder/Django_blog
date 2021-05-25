@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+
+{% block Content %}
+    <h1> {{ new_user.first_name }}!</h1>
+    <p>Ваша учетная запись создана,  вы можете <a href="{% url 'login' %}">войти в аккаунт.</a>.</p>
+{% endblock Content %}

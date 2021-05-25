@@ -1,0 +1,14 @@
+{% extends 'base.html' %} 
+{% block Content %}
+{% comment %} Comment Form {% endcomment %}
+
+ <h1>Новый комментарий</h1>
+    <form  method="POST">
+    	{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit"> Send </button>
+    
+    </form>
+    
+
+{% endblock Content %}

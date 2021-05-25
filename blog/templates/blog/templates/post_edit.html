@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% comment %} Post edit form {% endcomment %}
+{% block Content %}
+    <h1>Новый пост</h1>
+    <form method="POST" enctype="multipart/form-data">
+    	{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Сохранить</button>
+        
+    </form>
+
+{% endblock %}
